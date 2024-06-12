@@ -7,28 +7,21 @@ import ReactFlow, {
   Controls,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import Sidebar from "./NodesPanel";
+import NodesPanel from "./NodesPanel";
 import "./index.css";
 
-// const initialNodes = [
-//   {
-//     id: "1",
-//     type: "input",
-//     data: { label: "start" },
-//     position: { x: 250, y: 5 },
-//   },
-// ];
-
-let id = 0;
 const getId = () => `dndnode_${Date.now()}`;
 
 const DnDFlow = () => {
-
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  //   console.log("nodes", nodes)
 
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  //   console.log("edges", edges);
+
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  //   console.log("reactFlowInstance", reactFlowInstance)
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -60,16 +53,19 @@ const DnDFlow = () => {
         position,
         data: { label: `${type}` },
       };
-
       setNodes((nds) => nds.concat(newNode));
     },
-    [reactFlowInstance]
+    [reactFlowInstance],
+    console.log("nodes", nodes),
+    console.log("edges", edges),
+    localStorage.setItem("node", JSON.stringify(nodes.length)),
+    localStorage.setItem("edge", JSON.stringify(edges.length))
   );
 
   return (
     <div className="dndflow">
       <ReactFlowProvider>
-        <Sidebar />
+        <NodesPanel />
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
@@ -85,8 +81,6 @@ const DnDFlow = () => {
             <Controls />
           </ReactFlow>
         </div>
-
-       
       </ReactFlowProvider>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react'
-import DnDFlow from './components/DnDFlow'
+import DnDFlow from './components/Flow'
 
 const App = () => {
   return (
