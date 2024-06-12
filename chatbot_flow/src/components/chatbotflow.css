@@ -17,15 +17,16 @@
 }
 
 .dndflow .dndnode {
-  height: 20px;
+  height: auto;
   padding: 4px;
   border: 1px solid #1a192b;
   border-radius: 2px;
   margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
   cursor: grab;
+  margin-top: 40px;
 }
 
 .dndflow .reactflow-wrapper {
@@ -48,6 +49,14 @@
   }
 }
 
+
+@media screen and (max-width: 768px) {
+  .dndflow {
+    flex-direction: column;
+  }
+}
+
+
 .inputtag {
   padding: 10px;
   width: 90%;
@@ -56,9 +65,4 @@
 }
 .btntag {
   margin-left: 90px;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-around;
 }

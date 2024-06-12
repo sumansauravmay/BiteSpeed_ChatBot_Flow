@@ -1,27 +1,25 @@
 import React, { useState } from "react";
+import NodeText from "./NodeText";
 
-export default ({nodes, edges}) => {
- 
-  const [value, setValue] = useState("");
+export default ({value, handleChange, handleClick}) => {
 
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
   };
 
-  const handleSavebtn=()=>{
-    let node=JSON.parse(localStorage.getItem("node"));
-    let edge=JSON.parse(localStorage.getItem("edge"));
+  const handleSavebtn = () => {
+    let node = JSON.parse(localStorage.getItem("node"));
+    let edge = JSON.parse(localStorage.getItem("edge"));
     console.log("nodelength", node);
     console.log("edgelength", edge);
 
-    if((node-1)===edge){
-      alert("saved")
-    }else{
-      alert("sth went wrong")
+    if (node - 1 === edge) {
+      alert("saved");
+    } else {
+      alert("sth went wrong");
     }
-   
-  }
+  };
 
   return (
     <aside>
@@ -51,12 +49,32 @@ export default ({nodes, edges}) => {
       <div style={{ fontSize: "15px" }}>Text</div>
       <textarea
         className="inputtag"
-        onChange={(e) => setValue(e.target.value)}
-        onDragStart={(event) => onDragStart(event, value)}
-        draggable
+        onChange={handleChange}
       >
         {value}
       </textarea>
+      <div style={{textAlign:"center"}}>
+      <button
+      style={{
+        padding: "5px",
+        width: "30%",
+        fontSize: "16px",
+        borderRadius: "4px",
+        cursor: "pointer",
+      }}
+      onClick={handleClick}
+      >Update</button>
+      </div>
+      
+
+{/* NodeText */}
+      <div
+        className="dndnode input"
+        onDragStart={(event) => onDragStart(event, "Text Message")}
+        draggable
+      >
+        <NodeText message="Text Message" />
+      </div>
     </aside>
   );
 };
