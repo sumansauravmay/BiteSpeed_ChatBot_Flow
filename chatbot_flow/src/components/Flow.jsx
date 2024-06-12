@@ -15,13 +15,13 @@ const getId = () => `dndnode_${Date.now()}`;
 const DnDFlow = () => {
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  //   console.log("nodes", nodes)
+  //   console.log("nodes", nodes);
 
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   //   console.log("edges", edges);
 
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  //   console.log("reactFlowInstance", reactFlowInstance)
+  //   console.log("reactFlowInstance", reactFlowInstance);
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -57,15 +57,18 @@ const DnDFlow = () => {
     },
     [reactFlowInstance],
     console.log("nodes", nodes),
-    console.log("edges", edges),
-    localStorage.setItem("node", JSON.stringify(nodes.length)),
-    localStorage.setItem("edge", JSON.stringify(edges.length))
+    console.log("edges", edges)
   );
+
+  localStorage.setItem("node", JSON.stringify(nodes.length));
+  localStorage.setItem("edge", JSON.stringify(edges.length));
+
+
 
   return (
     <div className="dndflow">
       <ReactFlowProvider>
-        <NodesPanel />
+  
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
@@ -81,6 +84,7 @@ const DnDFlow = () => {
             <Controls />
           </ReactFlow>
         </div>
+        <NodesPanel />
       </ReactFlowProvider>
     </div>
   );

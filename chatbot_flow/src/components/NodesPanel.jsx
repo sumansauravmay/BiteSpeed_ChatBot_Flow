@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-export default () => {
+export default ({nodes, edges}) => {
+ 
   const [value, setValue] = useState("");
 
   const onDragStart = (event, nodeType) => {
@@ -9,7 +10,6 @@ export default () => {
   };
 
   const handleSavebtn=()=>{
-
     let node=JSON.parse(localStorage.getItem("node"));
     let edge=JSON.parse(localStorage.getItem("edge"));
     console.log("nodelength", node);
