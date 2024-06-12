@@ -83,7 +83,11 @@ Go to the project directory
 
 ```bash
   cd BiteSpeed_ChatBot_Flow
+  npm create-react-app chatbot_flow
   cd chatbot_flow
+  npm i reactflow
+  npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+  npm start
 
 ```
 
