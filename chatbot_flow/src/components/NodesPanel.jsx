@@ -1,80 +1,52 @@
 import React, { useState } from "react";
 import NodeText from "./NodeText";
+import { Button, Textarea, Text } from '@chakra-ui/react';
 
-export default ({value, handleChange, handleClick}) => {
-
+export default ({ value, handleChange, handleClick }) => {
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
   };
 
-  const handleSavebtn = () => {
-    let node = JSON.parse(localStorage.getItem("node"));
-    let edge = JSON.parse(localStorage.getItem("edge"));
-    console.log("nodelength", node);
-    console.log("edgelength", edge);
-
-    if (node - 1 === edge) {
-      alert("saved");
-    } else {
-      alert("sth went wrong");
-    }
-  };
-
   return (
     <aside>
-      {/* Save Button */}
-      <div style={{ textAlign: "center" }}>
-        <button
-          style={{
-            padding: "5px",
-            width: "50%",
-            fontSize: "16px",
-            borderRadius: "4px",
-            color: "blue",
-            borderColor: "blue",
-            cursor: "pointer",
-          }}
-          onClick={handleSavebtn}
-        >
-          Save Button
-        </button>
-      </div>
-
-      <hr />
-      <h1 style={{ textAlign: "center" }}>Message</h1>
-      <hr />
-
       {/* Setting panel */}
+      <Text fontSize='2xl' style={{ textAlign: "center" }}>Message</Text>
+      <hr />
       <div style={{ fontSize: "15px" }}>Text</div>
-      <textarea
-        className="inputtag"
-        onChange={handleChange}
-      >
+      <Textarea style={{borderColor:"black"}} onChange={handleChange}>
         {value}
-      </textarea>
-      <div style={{textAlign:"center"}}>
-      <button
-      style={{
-        padding: "5px",
-        width: "30%",
-        fontSize: "16px",
-        borderRadius: "4px",
-        cursor: "pointer",
-      }}
-      onClick={handleClick}
-      >Update</button>
+      </Textarea>
+      <div style={{ textAlign: "center" }}>
+        <Button
+        mt={5} color={'white'}
+        background={'blue'}
+        _hover={{
+          bg: 'blue.500',
+        }}
+          onClick={handleClick}
+        >
+          Update
+        </Button>
       </div>
-      
 
-{/* NodeText */}
+      {/* NodeText */}
       <div
-        className="dndnode input"
-        onDragStart={(event) => onDragStart(event, "Text Message")}
+        className="dndnode"
+        onDragStart={(event) => onDragStart(event, "Test Message 1")}
         draggable
       >
-        <NodeText message="Text Message" />
+        <NodeText message="Test Message 1" />
       </div>
+
+      <div
+        className="dndnode2"
+        onDragStart={(event) => onDragStart(event, "Test Message 2")}
+        draggable
+      >
+        <NodeText message="Test Message 2" />
+      </div>
+
     </aside>
   );
 };

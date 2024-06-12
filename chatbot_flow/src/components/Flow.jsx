@@ -13,28 +13,22 @@ import "./chatbotflow.css";
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
-// const getId = () => `dndnode_${Date.now()}`;
-
 const DnDFlow = () => {
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
-
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  //   console.log("edges", edges);
-
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  //   console.log("reactFlowInstance", reactFlowInstance);
 
-  //edit hook
+  //Update node
   const [editVal, setEditVal] = useState(nodes.data);
   const [id, setId] = useState();
 
-  // function for edit
+
   const onNodeClick = (e, val) => {
     setEditVal(val.data.label);
     setId(val.id);
   };
-  // onchange function
+
   const handleChange = (e) => {
     e.preventDefault();
     setEditVal(e.target.value);
