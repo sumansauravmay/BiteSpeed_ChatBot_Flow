@@ -19,7 +19,7 @@ const DnDFlow = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
 
-  //Update node
+  //Update/Replace Node
   const [editVal, setEditVal] = useState(nodes.data);
   const [id, setId] = useState();
 
@@ -47,6 +47,9 @@ const DnDFlow = () => {
     setNodes(res);
     setEditVal("");
   };
+
+
+// Drag and Drop logic
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -107,6 +110,8 @@ const DnDFlow = () => {
             <Controls />
           </ReactFlow>
         </div>
+{/* Node Panel */}
+
         <NodesPanel
           value={editVal}
           handleChange={handleChange}

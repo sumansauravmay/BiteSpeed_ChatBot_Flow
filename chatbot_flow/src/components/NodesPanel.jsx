@@ -30,7 +30,7 @@ export default ({ value, handleChange, handleClick }) => {
         </Button>
       </div>
 
-      {/* NodeText */}
+      {/* NodeText Component*/}
       <div
         className="dndnode"
         onDragStart={(event) => onDragStart(event, "Test Message 1")}
